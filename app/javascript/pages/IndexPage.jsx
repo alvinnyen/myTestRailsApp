@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { getRestaurantList } from '../dataParser.js';
 import moment from 'moment';
+import Card from '../components/Card.jsx';
 
 class IndexPage extends Component {
     constructor() {
@@ -24,7 +25,23 @@ class IndexPage extends Component {
         return (
             <div>
                 {
-                    restaurantList.map(({name, id}) => <div key={id}>{name}</div>)
+                    restaurantList.map((
+                        {address, backgroundImgUrl, end, id, isOpen, name, start}
+                    ) => {
+
+                        return (
+                            <Card 
+                                key={id}
+                                id={id}
+                                address={address}
+                                backgroundImgUrl={backgroundImgUrl}
+                                name={name} 
+                                start={start}
+                                end={end}
+                                isOpen={isOpen}
+                            />
+                        );
+                    })
                 }
             </div>
         );

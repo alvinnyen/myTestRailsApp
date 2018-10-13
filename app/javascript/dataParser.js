@@ -18,12 +18,26 @@ module.exports.getRestaurantList = function (weekday) {
                 open = []
             } = {}
         } = {}
-    }) => ({
-        address,
-        backgroundImgUrl,
-        id,
-        name,
-        start: open[weekday] && open[weekday].start,
-        end: open[weekday] && open[weekday].end
-    }));
+    }) => {
+        const start = open[weekday] && open[weekday].start;
+        const end = open[weekday] && open[weekday].end;
+
+        return ({
+                address,
+                backgroundImgUrl,
+                id,
+                name,
+                start,
+                end,
+                isOpen: _isOpen(start, end)
+        });
+    });
+}
+
+function _isOpen (start, end) {
+    const formatString = 'HHmm';
+    const startTime = moment(start, formatString);
+    const endTime = moment(end, formatString);
+
+    return moment().isBetween(startTime , endTime)
 }
