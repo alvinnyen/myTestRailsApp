@@ -1,6 +1,7 @@
 const rawData = require('./data.json');
+const moment = require('moment');
 
-function getRestaurantList (weekday) {
+module.exports.getRestaurantList = function (weekday) {
     const data = [...rawData];
 
     return data.map(({

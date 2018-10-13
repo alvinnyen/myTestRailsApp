@@ -4,7 +4,7 @@
 
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from '../components/App.jsx'
+import App from '../pages/App.jsx'
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -12,6 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
     <Router>
       <Route path="/" component={App} />
     </Router>,
-    document.body.appendChild(document.createElement('div')),
+    document.body.appendChild(document.createElement('div'))
   )
 })
