@@ -6,6 +6,7 @@ import About from '../components/About.jsx';
 import Contact from '../components/Contact.jsx';
 
 import IndexPage from './IndexPage.jsx';
+import RestaurantDetailPage from './RestaurantDetailPage.jsx';
 
 class App extends Component {
     render () {
@@ -13,7 +14,7 @@ class App extends Component {
             <div>
                 <Switch>
                     <Route exact path="/" component={IndexPage} />
-                    <Route exact path="/about/:department" component={About} />
+                    <Route exact path="/restaurant/:restaurantId" component={RestaurantDetailPage} />
                     <Route exact path="contact" component={Contact} />
                 </Switch>
             </div>

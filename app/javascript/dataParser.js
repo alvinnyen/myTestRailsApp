@@ -81,5 +81,3 @@ module.exports.getTheRestaurantDetail = function (restaurantId, weekday) {
         isOpen: _isOpen(start, end)
     };
 };
-
-console.log(module.exports.getTheRestaurantDetail(1, 1));
