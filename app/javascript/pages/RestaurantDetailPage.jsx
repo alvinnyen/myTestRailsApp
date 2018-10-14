@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { getTheRestaurantDetail } from '../dataParser.js';
 import moment from 'moment';
+import { Link } from 'react-router-dom';
 
 const getStyles = (nameOfBlock, backgroundImage) => {
     const styles = {
@@ -23,6 +24,10 @@ const getStyles = (nameOfBlock, backgroundImage) => {
         },
         price: {
             marginRight: '20px'
+        },
+        linkButton: {
+            display: 'inline-block',
+            marginTop: '20px'
         }
     };
 
@@ -122,6 +127,13 @@ class RestaurantDetailPage extends Component {
                     <div>{`address: ${address}`}</div>
                     <div>{`今日營業時間: ${start}~${end}`}</div>
                 </div>
+
+                <Link
+                    to="/"
+                    style={getStyles('linkButton')}
+                >
+                    返回首頁
+                </Link>
             </div>
         );
     }
