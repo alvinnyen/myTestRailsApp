@@ -3,6 +3,7 @@ import { getRestaurantList } from '../dataParser.js';
 import moment from 'moment';
 import Card from '../components/Card.jsx';
 import { Link } from 'react-router-dom';
+import TimeSearchForm from '../components/TimeSearchForm.jsx';
 
 class IndexPage extends Component {
     constructor() {
@@ -25,6 +26,9 @@ class IndexPage extends Component {
 
         return (
             <div>
+                <TimeSearchForm />
+
+
                 {
                     restaurantList.map((
                         {address, backgroundImgUrl, end, id, isOpen, name, start}
@@ -33,9 +37,9 @@ class IndexPage extends Component {
                         return (
                             <Link
                                 to={`/restaurant/${id}`}
+                                key={id}
                             >
                                 <Card 
-                                    key={id}
                                     id={id}
                                     address={address}
                                     backgroundImgUrl={backgroundImgUrl}
