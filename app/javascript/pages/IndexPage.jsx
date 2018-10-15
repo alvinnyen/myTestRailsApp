@@ -27,8 +27,6 @@ class IndexPage extends Component {
         return (
             <div>
                 <TimeSearchForm />
-
-
                 {
                     restaurantList.map((
                         {address, backgroundImgUrl, id, isOpen, name, opens}
