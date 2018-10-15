@@ -35,7 +35,7 @@ const getStyles = (nameOfBlock, backgroundImage) => {
 }
 
 class RestaurantDetailPage extends Component {
-    constructor (props) {
+    constructor(props) {
         super(props);
 
         this.state = {
@@ -43,7 +43,7 @@ class RestaurantDetailPage extends Component {
         }
     }
 
-    componentDidMount () {
+    componentDidMount() {
         const {
             match: {
                 params: {
@@ -76,7 +76,7 @@ class RestaurantDetailPage extends Component {
         this.setState({ restaurantDetail: { ...restaurantDetail } });
     }
 
-    render () {
+    render() {
         const {
             match: {
                 params: {
@@ -95,14 +95,13 @@ class RestaurantDetailPage extends Component {
                 address = '',
                 backgroundImgUrl = '',
                 categories = '',
-                end = '',
                 id = 0,
                 isOpen = false,
                 name = '',
                 price = '',
                 rating = 0,
                 reviewCount = 0,
-                start = '',
+                opens = []
             } = {}
         } = this.state;
 
@@ -110,7 +109,7 @@ class RestaurantDetailPage extends Component {
         if (!isOpen) {
             backgroundImage = 'linear-gradient(to left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)), ' + backgroundImage
         }
-        
+
         return (
             <div>
                 <div style={getStyles('imgBanner', backgroundImage)} />
@@ -125,7 +124,15 @@ class RestaurantDetailPage extends Component {
                         <span>{categories}</span>
                     </div>
                     <div>{`address: ${address}`}</div>
-                    <div>{`今日營業時間: ${start}~${end}`}</div>
+                    <div>
+                        {
+                            `今日營業時間: ${
+                                opens.map(({ start, end }) => {
+                                    return `${start}~${end}`
+                                }).join(', ')
+                            }`
+                        }
+                    </div>
                 </div>
 
                 <Link

@@ -24,8 +24,7 @@ const Card = ({
     id, 
     isOpen,
     name, 
-    start, 
-    end
+    opens = []
 }) => {
     let backgroundImage = `url(${backgroundImgUrl})`;
     if (!isOpen) {

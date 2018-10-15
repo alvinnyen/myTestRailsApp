@@ -31,7 +31,7 @@ class IndexPage extends Component {
 
                 {
                     restaurantList.map((
-                        {address, backgroundImgUrl, end, id, isOpen, name, start}
+                        {address, backgroundImgUrl, id, isOpen, name, opens}
                     ) => {
 
                         return (
@@ -44,8 +44,7 @@ class IndexPage extends Component {
                                     address={address}
                                     backgroundImgUrl={backgroundImgUrl}
                                     name={name} 
-                                    start={start}
-                                    end={end}
+                                    opens={opens}
                                     isOpen={isOpen}
                                 />
                             </Link>
