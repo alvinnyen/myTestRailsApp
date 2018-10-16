@@ -70,9 +70,6 @@ const Card = ({
         // backgroundImage = 'linear-gradient(to left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)), ' + backgroundImage;
     }
 
-    console.log(categories);
-
-
     return (
         <div style={getStyles('container')}>
             <div style={getStyles('backgroundImg', backgroundImage)}>{isOpen ? '' : 'Closed'}</div>

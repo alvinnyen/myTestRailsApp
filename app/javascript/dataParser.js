@@ -94,6 +94,24 @@ module.exports.getTheRestaurantDetail = function (restaurantId, weekday) {
 
                     // TODO verify if the open array was sorted
     const opens = open.filter(({ day }) => day === weekday);
+
+    // const map = open.reduce({}, ((map, {day, start, end}) => {
+    //     if (!map[day]) {
+    //         map[day] = [`${start} ~ ${end}`];
+    //     } else {
+    //         map[day].push(`${start} ~ ${end}`);
+    //     }
+    // }));
+    // console.log(map);
+    // TODO: 用reduce改寫
+    let opensMap = {};
+    for(let i = 0; i < open.length; i++) {
+        if (!opensMap[open[i].day]) {
+            opensMap[open[i].day] = [`${open[i].start} ~ ${open[i].end}`];
+        } else {
+            opensMap[open[i].day].push(`${open[i].start} ~ ${open[i].end}`);
+        }
+    }
     
     return {
         id,
@@ -101,10 +119,10 @@ module.exports.getTheRestaurantDetail = function (restaurantId, weekday) {
         address,
         rating,
         price,
-        categories: categories.map(({title}) => title).join(', '),
+        categories: categories.map(({title}) => title),
         reviewCount,
         backgroundImgUrl,
-        opens,
+        opensMap: opensMap,
         isOpen: _isOpen(opens)
     };
 };

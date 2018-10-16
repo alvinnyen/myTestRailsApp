@@ -2,17 +2,51 @@ import React, { Component } from 'react';
 import { getTheRestaurantDetail } from '../dataParser.js';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
+import Tag from '../components/Tag.jsx';
 
 const getStyles = (nameOfBlock, backgroundImage) => {
     const styles = {
+        outerContainer: {
+            padding: 0,
+            margin: 0
+        },
+        contentBox: {
+            border: '2px solid red',
+            padding: '16px',
+            color: 'rgba(0, 0, 0, 0.87)'
+        },
+        titleFontStyle: {
+            display: 'inline-block',
+            fontSize: '24px',
+            fontWeight: '400',
+            margin: 0,
+            marginBottom: '0.35em',
+            lineHeight: '1.33'
+        },
+        paragraphFontStyle: {
+            margin: 0,
+            display: 'flex',
+            justifyContent: 'space-between',
+            marginBottom: '10px'
+        },
+        priceDiv: {
+            color: '#FFD700'
+        },
+
         container: {
-            // marginBottom: '40px'
+            boxShadow: '1px 1px 3px 0px rgba(0, 0, 0, 0.2), 1px 1px 1px 0px rgba(0, 0, 0, 0.14), 1px 2px 1px -1px rgba(0, 0, 0, 0.12)',
+            maxWidth: '960px',
+            padding: '50px',
+            // border: '2px solid red',
+            margin: '0 auto',
+            borderRadius: '4px',
+            marginTop: '20px'
         },
         imgBanner: {
             backgroundImage,
             backgroundSize: 'cover',
             backgroundPosition: 'center center',
-            // borderRadius: '4px',
+            borderRadius: '4px',
             height: '300px',
             width: '100%'
         },
@@ -94,14 +128,14 @@ class RestaurantDetailPage extends Component {
             restaurantDetail: {
                 address = '',
                 backgroundImgUrl = '',
-                categories = '',
+                categories = [],
                 id = 0,
                 isOpen = false,
                 name = '',
                 price = '',
                 rating = 0,
                 reviewCount = 0,
-                opens = []
+                opensMap = {}
             } = {}
         } = this.state;
 
@@ -111,37 +145,63 @@ class RestaurantDetailPage extends Component {
             backgroundImage = 'linear-gradient(to left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)), ' + backgroundImage;
         }
 
-        return (
-            <div>
-                <div style={getStyles('imgBanner', backgroundImage)} />
-                <div>
-                    <div>{name}</div>
-                    <div>
-                        <span style={getStyles('rating')}>{rating}</span>
-                        <span>{reviewCount}</span>
-                    </div>
-                    <div>
-                        <span style={getStyles('price')}>{price}</span>
-                        <span>{categories}</span>
-                    </div>
-                    <div>{`address: ${address}`}</div>
-                    <div>
-                        {
-                            `今日營業時間: ${
-                                opens.map(({ start, end }) => {
-                                    return `${start}~${end}`
-                                }).join(', ')
-                            }`
-                        }
-                    </div>
-                </div>
+        const weekDayMap = {
+            0: 'Sun.',
+            1: 'Mon.',
+            2: 'Tue.',
+            3: 'Wed.',
+            4: 'Thu.',
+            5: 'Fri.',
+            6: 'Sat.'
+        };
 
-                <Link
-                    to="/"
-                    style={getStyles('linkButton')}
-                >
-                    返回首頁
-                </Link>
+        // {`${weekDayMap[dayNumber]}  ${opensMap[dayNumber].join(', ')}`}
+        let opens = [];
+        for (let dayNumber in opensMap) {
+            let redColor = {}
+            if (parseInt(dayNumber) === moment().weekday()) {
+                redColor['color'] = 'red';
+            }
+            opens.push(
+                <div key={dayNumber} style={{ display: 'inline-block', marginTop: '10px' }}>
+                    <span style={{ display: 'inline-block', width: '80px', ...redColor }}>{weekDayMap[dayNumber]}</span>
+                    <span style={{ ...redColor }}>{opensMap[dayNumber].join(', ')}</span>
+                </div>
+            );
+        }
+
+        return (
+            <div style={getStyles('outerContainer')}>
+                <div style={getStyles('imgBanner', backgroundImage)} />
+                <div style={getStyles('container')}>
+
+                    <h2 style={getStyles('titleFontStyle')}>{name}</h2>
+
+                    <p style={getStyles('paragraphFontStyle')}>
+                        <div>{address}</div>
+                        <div style={getStyles('priceDiv')}>
+                            <span>{price}</span>
+                            <span style={{ color: 'rgba(0, 0, 0, 0.87)' }}> / </span>
+                            <span>$$$</span>
+                        </div>
+                    </p>
+                    <p style={getStyles('paragraphFontStyle')}>
+                        <div>{categories.map((title, index) => (<Tag key={index} text={title} />))}</div>
+                        <div>{`rating: ${rating} / 5`}</div>
+                    </p>
+
+                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                        {opens}
+                        <Link
+                            to="/"
+                            style={getStyles('linkButton')}
+                        >
+                            返回首頁
+                        </Link>
+                    </div>
+
+                    
+                </div>
             </div>
         );
     }
