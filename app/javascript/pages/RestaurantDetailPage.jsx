@@ -3,6 +3,7 @@ import { getTheRestaurantDetail } from '../dataParser.js';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
 import Tag from '../components/Tag.jsx';
+import Button from '../components/Button.jsx';
 
 const getStyles = (nameOfBlock, backgroundImage) => {
     const styles = {
@@ -62,6 +63,9 @@ const getStyles = (nameOfBlock, backgroundImage) => {
         linkButton: {
             display: 'inline-block',
             marginTop: '20px'
+        },
+        button: {
+            marginTop: '30px'
         }
     };
 
@@ -112,6 +116,12 @@ class RestaurantDetailPage extends Component {
 
     render() {
         const {
+            location: {
+                state: {
+                    backTo = ''
+                } = {}
+            } = {},
+
             match: {
                 params: {
                     restaurantId = '0'
@@ -123,6 +133,11 @@ class RestaurantDetailPage extends Component {
             // url: "/restaurant/2"
             // __proto__: Object
         } = this.props;
+
+        // console.log('in RestaurantDetailPage');
+        // console.log(this.props.location);
+        // console.log(`backTo: ${backTo}`)
+        // console.log(' ');
 
         const {
             restaurantDetail: {
@@ -192,12 +207,18 @@ class RestaurantDetailPage extends Component {
 
                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                         {opens}
-                        <Link
+
+                        {/* <Link
                             to="/"
                             style={getStyles('linkButton')}
                         >
                             返回首頁
-                        </Link>
+                        </Link> */}
+
+                        <Button 
+                            style={getStyles('button')}
+                            backTo={backTo}
+                        />
                     </div>
 
                     

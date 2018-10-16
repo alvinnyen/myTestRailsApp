@@ -57,11 +57,11 @@ function _isOpen (opens = [], timeString) {
         if (timeString) {
             const isBetween = moment(timeString, formatString).isBetween(startTime , endTime);
 
-            console.log(`timeString: ${timeString}`);
-            console.log(`startTime: ${startTime}`)
-            console.log(`endTime: ${endTime}`)
-            console.log(`isBetween: ${isBetween}`);
-            console.log(' ');
+            // console.log(`timeString: ${timeString}`);
+            // console.log(`startTime: ${startTime}`)
+            // console.log(`endTime: ${endTime}`)
+            // console.log(`isBetween: ${isBetween}`);
+            // console.log(' ');
 
             return isBetween;
         }

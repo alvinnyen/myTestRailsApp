@@ -6,6 +6,7 @@ import moment from 'moment';
 // import Card from '../components/Card.jsx';
 import { Link } from 'react-router-dom';
 import CardList from '../components/CardList.jsx';
+import Button from '../components/Button.jsx';
 
 const getStyles = (nameOfBlock, backgroundImage) => {
     const styles = {
@@ -83,18 +84,30 @@ class SearchResultPage extends Component {
         // console.log(restaurantList);
         // console.log(' ');
 
+        const {
+            location: {
+                pathname = '',
+                search =''
+            } = {}
+        } = this.props;
+
+        // console.log(this.props.location);
+        // console.log(`pathname: ${pathname}`);
+        // console.log(' ');
+
         return (
             <div style={ getStyles('container') }>
-                <Link
+                {/* <Link
                     to="/"
                     style={getStyles('buttonContainer')}
                 >
-                    <button
-                        style={getStyles('linkButton')}
-                    >
-                        返回首頁
-                    </button>
-                </Link>
+                    <Button />
+                </Link> */}
+                <div
+                    style={getStyles('buttonContainer')}
+                >
+                    <Button />
+                </div>
                 <div 
                     style={getStyles('searchResultTitle')}
                 >
@@ -103,6 +116,7 @@ class SearchResultPage extends Component {
                 <CardList
                     restaurantList={restaurantList}
                     isSearchResultPage={true}
+                    backTo={pathname + search}
                 />
             </div>
         );

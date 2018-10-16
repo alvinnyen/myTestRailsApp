@@ -21,7 +21,8 @@ class CardList extends Component {
     render () {
         const {
             restaurantList = [],
-            isSearchResultPage = false
+            isSearchResultPage = false,
+            backTo = ''
         } = this.props;
 
         return (
@@ -36,7 +37,12 @@ class CardList extends Component {
     
                         return (
                             <Link
-                                to={`/restaurant/${id}`}
+                                to={{
+                                    pathname: `/restaurant/${id}`,
+                                    state: {
+                                        backTo
+                                    }
+                                }}
                                 key={id}
                             >
                                 <Card 
