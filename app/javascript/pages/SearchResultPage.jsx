@@ -61,11 +61,17 @@ class SearchResultPage extends Component {
         // console.log('componentDidMount');
         // console.log(queryString.parse(this.props.location.search));
         // console.log(' ');
+        // console.log(`queryString.parse(this.props.location.search).time: ${queryString.parse(this.props.location.search).time}`);
+        // console.log(`queryString.parse(this.props.location.search).weekday: ${queryString.parse(this.props.location.search).weekday}`);
 
         this.setState({
+            // restaurantList: getRestaurantListByTime(
+            //     queryString.parse(this.props.location.search).time, 
+            //     moment().weekday()
+            // )
             restaurantList: getRestaurantListByTime(
                 queryString.parse(this.props.location.search).time, 
-                moment().weekday()
+                parseInt(queryString.parse(this.props.location.search).weekday)
             )
         });
     }
@@ -95,6 +101,11 @@ class SearchResultPage extends Component {
         // console.log(`pathname: ${pathname}`);
         // console.log(' ');
 
+        const queryObject = queryString.parse(search) || {};
+        const datetimeMs = queryObject.datetimeMs;
+        // console.log(moment(parseInt(datetimeMs)));
+        const datetimeString = moment(datetimeMs).format('MMMM Do YYYY, h:mm:ss a');
+
         return (
             <div style={ getStyles('container') }>
                 {/* <Link
@@ -111,7 +122,10 @@ class SearchResultPage extends Component {
                 <div 
                     style={getStyles('searchResultTitle')}
                 >
-                    {`${queryString.parse(this.props.location.search).time} search result`}
+                    {
+                        (datetimeMs && `${moment(parseInt(datetimeMs)).format('dddd ,MM/DD YYYY, HH:mm')} search result`) ||
+                        `${queryString.parse(search).time} search result`
+                    }
                 </div>
                 <CardList
                     restaurantList={restaurantList}

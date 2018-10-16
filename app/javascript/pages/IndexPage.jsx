@@ -6,6 +6,7 @@ import moment from 'moment';
 import CardList from '../components/CardList.jsx';
 
 import TimeSearchForm from '../components/TimeSearchForm.jsx';
+import DateTimeSearchForm from '../components/DateTimeSearchForm.jsx';
 
 const getStyles = (nameOfBlock, backgroundImage) => {
     const styles = {
@@ -62,6 +63,7 @@ class IndexPage extends Component {
         return (
             <div style={ getStyles('container') }>
                 <TimeSearchForm />
+                <DateTimeSearchForm/>
                 <CardList
                     restaurantList={restaurantList}
                 />
