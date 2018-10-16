@@ -12,6 +12,7 @@ import MomentUtils from 'material-ui-pickers/utils/moment-utils';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import MuiPickersUtilsProvider from 'material-ui-pickers/utils/MuiPickersUtilsProvider';
 
+// for ref.: https://github.com/mui-org/material-ui/issues/13175#issuecomment-428578344
 const theme = createMuiTheme({
   typography: {
     useNextVariants: true,
