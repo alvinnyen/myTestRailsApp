@@ -1,17 +1,49 @@
 import React from 'react';
+import moment from 'moment';
+import Tag from './Tag.jsx';
 
 const getStyles = (nameOfBlock, backgroundImage) => {
     const styles = {
         container: {
-            marginBottom: '40px'
+            marginBottom: '40px',
+            border: '2px solid blue',
+            display: 'inline-block',
+            borderRadius: '4px',
         },
         backgroundImg: {
             backgroundImage,
             backgroundSize: 'cover',
             backgroundPosition: 'center center',
-            borderRadius: '4px',
-            height: '200px',
-            width: '400px'
+            height: '140px',
+            width: '600px',
+
+            color: 'red',
+            fontSize: '40px',
+            fontWeight: 800,
+            textAlign: 'center',
+            lineHeight: '140px'
+        },
+        contentBox: {
+            border: '2px solid red',
+            padding: '16px',
+            color: 'rgba(0, 0, 0, 0.87)'
+        },
+        titleFontStyle: {
+            display: 'inline-block',
+            fontSize: '24px',
+            fontWeight: '400',
+            margin: 0,
+            marginBottom: '0.35em',
+            lineHeight: '1.33'
+        },
+        paragraphFontStyle: {
+            margin: 0,
+            display: 'flex',
+            justifyContent: 'space-between',
+            marginBottom: '10px'
+        },
+        priceDiv: {
+            color: '#FFD700'
         }
     };
 
@@ -26,17 +58,44 @@ const Card = ({
     name, 
     opens = [],
 
-    isSearchResultPage = false
+    isSearchResultPage = false,
+
+    price,
+    rating,
+    categories = []
 }) => {
     let backgroundImage = `url(${backgroundImgUrl})`;
     if (!isSearchResultPage && !isOpen) {
-        backgroundImage = 'linear-gradient(to left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)), ' + backgroundImage
+        backgroundImage = 'radial-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)), ' + backgroundImage;
+        // backgroundImage = 'linear-gradient(to left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)), ' + backgroundImage;
     }
+
+    console.log(categories);
+
 
     return (
         <div style={getStyles('container')}>
-            <div style={getStyles('backgroundImg', backgroundImage)}></div>
-            <div>{name}</div>
+            <div style={getStyles('backgroundImg', backgroundImage)}>{isOpen ? '' : 'Closed'}</div>
+            <div style={getStyles('contentBox')}>
+                <h2 style={getStyles('titleFontStyle')}>{name}</h2>
+                <p style={getStyles('paragraphFontStyle')}>
+                    <div>{address}</div>
+                    <div style={getStyles('priceDiv')}>
+                        <span>{price}</span>
+                        <span style={{ color: 'rgba(0, 0, 0, 0.87)' }}> / </span>
+                        <span>$$$</span>
+                    </div>
+                </p>
+                <p style={getStyles('paragraphFontStyle')}>
+                    <div>{categories.map((title, index) => (<Tag key={index} text={title} />))}</div>
+                    <div>{`rating: ${rating} / 5`}</div>
+                </p>
+                <p style={{ ...getStyles('paragraphFontStyle'), marginBottom: 0 }}>
+                    <div>
+                        {`today open: ${opens.map(open => `${open.start} ~ ${open.end}`).join(', ')}`}
+                    </div>
+                </p>
+            </div>
         </div>
     );
 };

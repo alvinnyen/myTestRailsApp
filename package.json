@@ -10,6 +10,7 @@
     "moment": "^2.22.2",
     "prop-types": "^15.6.2",
     "query-string": "^6.2.0",
+    "radium": "^0.25.0",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-router": "^4.3.1",

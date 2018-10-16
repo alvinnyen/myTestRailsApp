@@ -107,7 +107,8 @@ class RestaurantDetailPage extends Component {
 
         let backgroundImage = `url(${backgroundImgUrl})`;
         if (!isOpen) {
-            backgroundImage = 'linear-gradient(to left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)), ' + backgroundImage
+            // backgroundImage = 'radial-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)), ' + backgroundImage;
+            backgroundImage = 'linear-gradient(to left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)), ' + backgroundImage;
         }
 
         return (

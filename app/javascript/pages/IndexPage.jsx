@@ -1,9 +1,44 @@
 import React, { Component } from 'react';
 import { getRestaurantList } from '../dataParser.js';
 import moment from 'moment';
-import Card from '../components/Card.jsx';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
+// import Card from '../components/Card.jsx';
+import CardList from '../components/CardList.jsx';
+
 import TimeSearchForm from '../components/TimeSearchForm.jsx';
+
+const getStyles = (nameOfBlock, backgroundImage) => {
+    const styles = {
+        container: {
+            maxWidth: '960px',
+            border: '2px solid red',
+            margin: '0 auto'
+        },
+        // imgBanner: {
+        //     backgroundImage,
+        //     backgroundSize: 'cover',
+        //     backgroundPosition: 'center center',
+        //     // borderRadius: '4px',
+        //     height: '300px',
+        //     width: '100%'
+        // },
+        // ratingAndReviewCount: {
+        //     // display: 'flex'
+        // },
+        // rating: {
+        //     marginRight: '20px'
+        // },
+        // price: {
+        //     marginRight: '20px'
+        // },
+        // linkButton: {
+        //     display: 'inline-block',
+        //     marginTop: '20px'
+        // }
+    };
+
+    return styles[nameOfBlock];
+}
 
 class IndexPage extends Component {
     constructor() {
@@ -25,30 +60,11 @@ class IndexPage extends Component {
         } = this.state;
 
         return (
-            <div>
+            <div style={ getStyles('container') }>
                 <TimeSearchForm />
-                {
-                    restaurantList.map((
-                        {address, backgroundImgUrl, id, isOpen, name, opens}
-                    ) => {
-
-                        return (
-                            <Link
-                                to={`/restaurant/${id}`}
-                                key={id}
-                            >
-                                <Card 
-                                    id={id}
-                                    address={address}
-                                    backgroundImgUrl={backgroundImgUrl}
-                                    name={name} 
-                                    opens={opens}
-                                    isOpen={isOpen}
-                                />
-                            </Link>
-                        );
-                    })
-                }
+                <CardList
+                    restaurantList={restaurantList}
+                />
             </div>
         );
     }

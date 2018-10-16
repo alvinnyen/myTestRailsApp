@@ -7,6 +7,11 @@ module.exports.getRestaurantList = function (weekday) {
     return data.map(({
         id, 
         name, 
+
+        price,
+        rating,
+        categories = [],
+
         photos: { 
             0: backgroundImgUrl 
         } = {},
@@ -23,12 +28,16 @@ module.exports.getRestaurantList = function (weekday) {
         const opens = open.filter(({ day }) => day === weekday);
 
         return ({
-                address,
-                backgroundImgUrl,
-                id,
-                name,
-                opens,
-                isOpen: _isOpen(opens)
+            address,
+            backgroundImgUrl,
+            id,
+            name,
+            opens,
+            isOpen: _isOpen(opens),
+
+            price,
+            rating,
+            categories: categories.map(({title}) => title)
         });
     });
 }
@@ -149,23 +158,23 @@ const opens = [{
 
 // 永和豆漿大王 幾乎每天 00:00 ~ 00:00，另外寫unit test
 
-module.exports.getRestaurantListByTime = function (timeString, weekday) {
-    const data = [...rawData];
+// module.exports.filteredGetRestaurantListByTime = function (timeString, weekday) {
+//     const data = [...rawData];
 
-    const filteredArray = data.filter(({
-        hours: {
-            0: {
-                open = []
-            } = {}
-        } = {}
-    }) => {
-        const opens = open.filter(({ day }) => day === weekday);
+//     const filteredArray = data.filter(({
+//         hours: {
+//             0: {
+//                 open = []
+//             } = {}
+//         } = {}
+//     }) => {
+//         const opens = open.filter(({ day }) => day === weekday);
 
-        return _isOpen(opens, timeString);
-    });
+//         return _isOpen(opens, timeString);
+//     });
 
-    return filteredArray;
-};
+//     return filteredArray;
+// };
 
 const testRestaurants = [ {
     "name": "永和豆漿大王",
@@ -535,6 +544,11 @@ module.exports.getRestaurantListByTime = function (timeString, weekday) {
     }).map(({
         id, 
         name, 
+
+        price,
+        rating,
+        categories = [],
+
         photos: { 
             0: backgroundImgUrl 
         } = {},
@@ -554,9 +568,13 @@ module.exports.getRestaurantListByTime = function (timeString, weekday) {
                 backgroundImgUrl,
                 id,
                 name,
-                opens
+                opens,
                 // ,
                 // isOpen: _isOpen(opens) // 不需要，因為經過filter的餐廳都是在特定時間點有open的
+
+                price,
+                rating,
+                categories: categories.map(({title}) => title)
         });
     });
 
