@@ -11,6 +11,9 @@ const getStyles = (nameOfBlock, backgroundImage) => {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center'
+        },
+        cardContainer: {
+            marginBottom: '40px'
         }
     };
 
@@ -44,6 +47,7 @@ class CardList extends Component {
                                     }
                                 }}
                                 key={id}
+                                style={ getStyles('cardContainer') }
                             >
                                 <Card 
                                     id={id}

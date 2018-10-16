@@ -5,7 +5,7 @@ import Tag from './Tag.jsx';
 const getStyles = (nameOfBlock, backgroundImage) => {
     const styles = {
         container: {
-            marginBottom: '40px',
+            // marginBottom: '40px',
             border: '2px solid blue',
             display: 'inline-block',
             borderRadius: '4px',
