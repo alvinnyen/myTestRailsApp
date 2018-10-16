@@ -72,7 +72,7 @@ const Card = ({
 
     return (
         <div style={getStyles('container')}>
-            <div style={getStyles('backgroundImg', backgroundImage)}>{isOpen ? '' : 'Closed'}</div>
+            <div style={getStyles('backgroundImg', backgroundImage)}>{(!isSearchResultPage && !isOpen) ? 'Closed' : ''}</div>
             <div style={getStyles('contentBox')}>
                 <h2 style={getStyles('titleFontStyle')}>{name}</h2>
                 <p style={getStyles('paragraphFontStyle')}>
