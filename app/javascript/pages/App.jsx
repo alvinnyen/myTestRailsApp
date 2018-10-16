@@ -8,6 +8,7 @@ import Contact from '../components/Contact.jsx';
 import IndexPage from './IndexPage.jsx';
 import RestaurantDetailPage from './RestaurantDetailPage.jsx';
 import SearchResultPage from './SearchResultPage.jsx';
+import TestPage from './TestPage.jsx';
 
 
 class App extends Component {
@@ -19,6 +20,7 @@ class App extends Component {
                     <Route exact path="/restaurant/:restaurantId" component={RestaurantDetailPage} />
                     <Route exact path="/search" component={SearchResultPage} />
                     <Route exact path="contact" component={Contact} />
+                    <Route exact path="/test" component={TestPage} />
                 </Switch>
             </div>
         );

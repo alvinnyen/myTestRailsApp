@@ -7,10 +7,26 @@ import ReactDOM from 'react-dom'
 import App from '../pages/App.jsx'
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
+import MomentUtils from 'material-ui-pickers/utils/moment-utils';
+
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import MuiPickersUtilsProvider from 'material-ui-pickers/utils/MuiPickersUtilsProvider';
+
+const theme = createMuiTheme({
+  typography: {
+    useNextVariants: true,
+    suppressDeprecationWarnings: true
+  }
+});
+
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
     <Router>
-      <Route path="/" component={App} />
+      <MuiThemeProvider theme={theme}>
+        <MuiPickersUtilsProvider utils={MomentUtils}>
+          <Route path="/" component={App} />
+        </MuiPickersUtilsProvider>
+      </MuiThemeProvider>
     </Router>,
     document.body.appendChild(document.createElement('div'))
   )
