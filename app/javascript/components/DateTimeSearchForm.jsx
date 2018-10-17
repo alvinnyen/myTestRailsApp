@@ -10,8 +10,6 @@ const getStyles = (nameOfBlock) => {
             alignItems: 'center'
         },
         label: {
-            // border: '2px solid red',
-
             fontSize: '22px',
             fontWeight: 400,
             lineHeight: 1.33,
@@ -43,33 +41,26 @@ const getStyles = (nameOfBlock) => {
 
 class DateTimeSearchForm extends Component {
     state = {
-        selectedDate: new Date(),
+        selectedDate: new Date()
     }
 
-    handleDateChange = (date) => {
-        this.setState({ selectedDate: date });
-    }
+    handleDateChange = (date) =>  this.setState({ selectedDate: date })
 
     render() {
         const { selectedDate } = this.state;
-        // console.log(selectedDate);
-        // console.log(moment(selectedDate));
-        // console.log(moment(selectedDate).weekday());
-        // console.log(' ');
 
         const timeString = moment(selectedDate).format('HHmm');
         const weekday = moment(selectedDate).weekday();
 
-        // label="24h clock"
         const datetimeMs = moment(selectedDate);
 
+        const chooseATime = 'choose a time !!';
+        const submit = 'submit';
+
         return (
-            <div 
-                className="picker"
-                style={ getStyles('container') }
-            >
-                <label style={ getStyles('label') }>
-                    choose a time !!
+            <div style={getStyles('container')}>
+                <label style={getStyles('label')}>
+                    {chooseATime}
                 </label>
                 <DateTimePicker
                     autoOk
@@ -77,14 +68,13 @@ class DateTimeSearchForm extends Component {
                     disableFuture
                     value={selectedDate}
                     onChange={this.handleDateChange}
-                    style={ getStyles('dateTimePicker') }
+                    style={getStyles('dateTimePicker')}
                 />
                 <Link 
                     to={`/search?time=${timeString}&weekday=${weekday}&datetimeMs=${datetimeMs}`}
-                    style={ getStyles('buttonContainer') }
+                    style={getStyles('buttonContainer')}
                 >
-
-                        submit
+                    {submit}
                 </Link>
             </div>
         );
