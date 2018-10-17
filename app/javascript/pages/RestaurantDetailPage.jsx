@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { getTheRestaurantDetail } from '../dataParser.js';
 import moment from 'moment';
-import { Link } from 'react-router-dom';
+
+import { getTheRestaurantDetail } from '../dataParser.js';
 import Tag from '../components/Tag.jsx';
 import Button from '../components/Button.jsx';
 import { weekDayMap } from '../langMap.js';
@@ -11,11 +11,6 @@ const getStyles = (nameOfBlock, backgroundImage) => {
         outerContainer: {
             padding: 0,
             margin: 0
-        },
-        contentBox: {
-            border: '2px solid red',
-            padding: '16px',
-            color: 'rgba(0, 0, 0, 0.87)'
         },
         titleFontStyle: {
             display: 'inline-block',
@@ -34,8 +29,7 @@ const getStyles = (nameOfBlock, backgroundImage) => {
         priceDiv: {
             color: '#FFD700'
         },
-
-        container: {
+        innerContainer: {
             boxShadow: '1px 1px 3px 1px rgba(0, 0, 0, 0.2), 1px 1px 1px 0px rgba(0, 0, 0, 0.14), 1px 2px 1px -1px rgba(0, 0, 0, 0.12)',
             maxWidth: '960px',
             padding: '30px',
@@ -52,21 +46,19 @@ const getStyles = (nameOfBlock, backgroundImage) => {
             height: '300px',
             width: '100%'
         },
-        ratingAndReviewCount: {
-            // display: 'flex'
-        },
-        rating: {
-            marginRight: '20px'
-        },
-        price: {
-            marginRight: '20px'
-        },
-        linkButton: {
-            display: 'inline-block',
-            marginTop: '20px'
-        },
         button: {
             marginTop: '30px'
+        },
+        inlineBlock: {
+            display: 'inline-block'
+        },
+        divideSign: {
+            color: 'rgba(0, 0, 0, 0.87)'
+        },
+        opensBlockContainer: {
+            display: 'flex', 
+            flexDirection: 'column', 
+            alignItems: 'center'
         }
     };
 
@@ -74,12 +66,8 @@ const getStyles = (nameOfBlock, backgroundImage) => {
 }
 
 class RestaurantDetailPage extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            restaurantDetail: {}
-        }
+    state = {
+        restaurantDetail: {}
     }
 
     componentDidMount() {
@@ -89,13 +77,7 @@ class RestaurantDetailPage extends Component {
                     restaurantId = '0'
                 } = {}
             } = {}
-            // isExact: true
-            // params: {restaurantId: "2"}
-            // path: "/restaurant/:restaurantId"
-            // url: "/restaurant/2"
-            // __proto__: Object
         } = this.props;
-
 
         const restaurantDetail = getTheRestaurantDetail(restaurantId, moment().weekday());
         // {
@@ -121,102 +103,76 @@ class RestaurantDetailPage extends Component {
                 state: {
                     backTo = ''
                 } = {}
-            } = {},
-
-            match: {
-                params: {
-                    restaurantId = '0'
-                } = {}
             } = {}
-            // isExact: true
-            // params: {restaurantId: "2"}
-            // path: "/restaurant/:restaurantId"
-            // url: "/restaurant/2"
-            // __proto__: Object
         } = this.props;
-
-        // console.log('in RestaurantDetailPage');
-        // console.log(this.props.location);
-        // console.log(`backTo: ${backTo}`)
-        // console.log(' ');
 
         const {
             restaurantDetail: {
                 address = '',
                 backgroundImgUrl = '',
                 categories = [],
-                id = 0,
+                // id = 0,
                 isOpen = false,
                 name = '',
                 price = '',
                 rating = 0,
-                reviewCount = 0,
+                // reviewCount = 0,
                 opensMap = {}
             } = {}
         } = this.state;
 
         let backgroundImage = `url(${backgroundImgUrl})`;
         if (!isOpen) {
-            // backgroundImage = 'radial-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)), ' + backgroundImage;
             backgroundImage = 'linear-gradient(to left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)), ' + backgroundImage;
         }
 
-        // {`${weekDayMap[dayNumber]}  ${opensMap[dayNumber].join(', ')}`}
         let opens = [];
         for (let dayNumber in opensMap) {
-            let redColor = {}
             const isToday = parseInt(dayNumber) === moment().weekday();
             let todayOpen = '';
+            let colorRed = {}
             if (isToday) {
-                redColor['color'] = 'red';
+                colorRed['color'] = 'red';
                 todayOpen = '今日營業時間';
             }
+
             opens.push(
-                <div key={dayNumber} style={{ display: 'inline-block', marginTop: '10px', ...redColor }}>
-                    <span style={{ display: 'inline-block', width: '120px' }}>{todayOpen}</span>
-                    <span style={{ display: 'inline-block', width: '60px' }}>{weekDayMap[dayNumber]}</span>
-                    <span style={{ display: 'inline-block'}}>{opensMap[dayNumber].join(', ')}</span>
+                <div key={dayNumber} style={{ marginTop: '10px', ...colorRed }}>
+                    <span style={{ ...getStyles('inlineBlock'), width: '120px' }}>{todayOpen}</span>
+                    <span style={{ ...getStyles('inlineBlock'), width: '70px' }}>{weekDayMap[dayNumber]}</span>
+                    <span style={{ ...getStyles('inlineBlock'), width: '200px'}}>{opensMap[dayNumber].join(', ')}</span>
                 </div>
             );
         }
 
+        const tags = categories.map((title, index) => (<Tag key={index} text={title} />));
+
+        const ratingString = `rating: ${rating} / 5`;
+
         return (
             <div style={getStyles('outerContainer')}>
                 <div style={getStyles('imgBanner', backgroundImage)} />
-                <div style={getStyles('container')}>
-
+                <div style={getStyles('innerContainer')}>
                     <h2 style={getStyles('titleFontStyle')}>{name}</h2>
-
                     <p style={getStyles('paragraphFontStyle')}>
                         <div>{address}</div>
                         <div style={getStyles('priceDiv')}>
                             <span>{price}</span>
-                            <span style={{ color: 'rgba(0, 0, 0, 0.87)' }}> / </span>
+                            <span style={getStyles('divideSign')}> / </span>
                             <span>$$$</span>
                         </div>
                     </p>
                     <p style={getStyles('paragraphFontStyle')}>
-                        <div>{categories.map((title, index) => (<Tag key={index} text={title} />))}</div>
-                        <div>{`rating: ${rating} / 5`}</div>
+                        <div>{tags}</div>
+                        <div>{ratingString}</div>
                     </p>
-
-                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                    <div style={getStyles('opensBlockContainer')}>
                         {opens}
-
-                        {/* <Link
-                            to="/"
-                            style={getStyles('linkButton')}
-                        >
-                            返回首頁
-                        </Link> */}
-
                         <Button 
                             style={getStyles('button')}
                             backTo={backTo}
                         />
                     </div>
-
-                    
                 </div>
             </div>
         );
