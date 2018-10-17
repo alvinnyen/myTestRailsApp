@@ -6,7 +6,6 @@ import RestaurantDetailPage from './RestaurantDetailPage.jsx';
 import SearchResultPage from './SearchResultPage.jsx';
 import TestPage from './TestPage.jsx';
 
-
 class App extends Component {
     render () {
         return (

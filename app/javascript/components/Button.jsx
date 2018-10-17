@@ -25,11 +25,7 @@ const Button = ({
     text = '回上一頁',
     backTo = '/',
     style = {}
-}) => {
-    console.log(`backTo: ${backTo}`);
-    console.log(' ');
-
-    return (
+}) => (
         <Link
             to={backTo}
             style={{ ...getStyles('button'), ...style }}
@@ -37,6 +33,5 @@ const Button = ({
             {text}
         </Link>
     );
-};
 
 export default Button;
