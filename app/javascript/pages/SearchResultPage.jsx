@@ -130,6 +130,7 @@ class SearchResultPage extends Component {
                 <CardList
                     restaurantList={restaurantList}
                     isSearchResultPage={true}
+                    searchWeekday={parseInt(queryString.parse(this.props.location.search).weekday)}
                     backTo={pathname + search}
                 />
             </div>

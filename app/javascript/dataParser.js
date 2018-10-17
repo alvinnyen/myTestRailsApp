@@ -1,5 +1,7 @@
 const rawData = require('./data.json');
 const moment = require('moment');
+const cityMap = require('./langMap.js').cityMap;
+const distMap = require('./langMap.js').distMap;
 
 module.exports.getRestaurantList = function (weekday) {
     const data = [...rawData];
@@ -16,7 +18,9 @@ module.exports.getRestaurantList = function (weekday) {
             0: backgroundImgUrl 
         } = {},
         location: {
-            address1: address
+            address1: address,
+            city: dist = '',
+            state: city = 'TPE'
         } = {},
         hours: {
             0: {
@@ -28,7 +32,7 @@ module.exports.getRestaurantList = function (weekday) {
         const opens = open.filter(({ day }) => day === weekday);
 
         return ({
-            address,
+            address: _getAdd(city, dist, address),
             backgroundImgUrl,
             id,
             name,
@@ -83,7 +87,9 @@ module.exports.getTheRestaurantDetail = function (restaurantId, weekday) {
             0: backgroundImgUrl 
         } = {},
         location: {
-            address1: address
+            address1: address,
+            city: dist = '',
+            state: city = 'TPE'
         } = {},
         hours: {
             0: {
@@ -116,7 +122,7 @@ module.exports.getTheRestaurantDetail = function (restaurantId, weekday) {
     return {
         id,
         name,
-        address,
+        address: _getAdd(city, dist, address),
         rating,
         price,
         categories: categories.map(({title}) => title),
@@ -571,7 +577,9 @@ module.exports.getRestaurantListByTime = function (timeString, weekday) {
             0: backgroundImgUrl 
         } = {},
         location: {
-            address1: address
+            address1: address,
+            city: dist = '',
+            state: city = 'TPE'
         } = {},
         hours: {
             0: {
@@ -582,7 +590,7 @@ module.exports.getRestaurantListByTime = function (timeString, weekday) {
         const opens = open.filter(({ day }) => day === weekday);
 
         return ({
-                address,
+                address: _getAdd(city, dist, address),
                 backgroundImgUrl,
                 id,
                 name,
@@ -600,3 +608,7 @@ module.exports.getRestaurantListByTime = function (timeString, weekday) {
 };
 
 // console.log(module.exports.getRestaurantListByTime('2000', moment().weekday()));
+
+const _getAdd = (city, dist, address) => {
+    return (cityMap[city] || city) + (distMap[dist] || dist) + address
+};

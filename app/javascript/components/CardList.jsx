@@ -25,7 +25,8 @@ class CardList extends Component {
         const {
             restaurantList = [],
             isSearchResultPage = false,
-            backTo = ''
+            backTo = '',
+            searchWeekday
         } = this.props;
 
         return (
@@ -61,6 +62,8 @@ class CardList extends Component {
                                     price={price}
                                     rating={rating}
                                     categories={categories}
+
+                                    searchWeekday={searchWeekday}
                                 />
                             </Link>
                         );

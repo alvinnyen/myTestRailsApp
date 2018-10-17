@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import Tag from './Tag.jsx';
+import { weekDayMap } from '../langMap.js';
 
 const getStyles = (nameOfBlock, backgroundImage) => {
     const styles = {
@@ -64,13 +65,18 @@ const Card = ({
 
     price,
     rating,
-    categories = []
+    categories = [],
+
+    searchWeekday
 }) => {
     let backgroundImage = `url(${backgroundImgUrl})`;
     if (!isSearchResultPage && !isOpen) {
         backgroundImage = 'radial-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)), ' + backgroundImage;
         // backgroundImage = 'linear-gradient(to left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)), ' + backgroundImage;
     }
+
+    const todayOpen = !opens.length ? '' : 
+                        `${weekDayMap[searchWeekday] || 'today'} open: ` + opens.map(open => `${open.start} ~ ${open.end}`).join(', ');
 
     return (
         <div style={getStyles('container')}>
@@ -91,7 +97,7 @@ const Card = ({
                 </p>
                 <p style={{ ...getStyles('paragraphFontStyle'), marginBottom: 0 }}>
                     <div>
-                        {`today open: ${opens.map(open => `${open.start} ~ ${open.end}`).join(', ')}`}
+                        {todayOpen}
                     </div>
                 </p>
             </div>

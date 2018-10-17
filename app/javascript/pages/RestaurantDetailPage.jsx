@@ -4,6 +4,7 @@ import moment from 'moment';
 import { Link } from 'react-router-dom';
 import Tag from '../components/Tag.jsx';
 import Button from '../components/Button.jsx';
+import { weekDayMap } from '../langMap.js';
 
 const getStyles = (nameOfBlock, backgroundImage) => {
     const styles = {
@@ -160,27 +161,21 @@ class RestaurantDetailPage extends Component {
             backgroundImage = 'linear-gradient(to left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)), ' + backgroundImage;
         }
 
-        const weekDayMap = {
-            0: 'Sun.',
-            1: 'Mon.',
-            2: 'Tue.',
-            3: 'Wed.',
-            4: 'Thu.',
-            5: 'Fri.',
-            6: 'Sat.'
-        };
-
         // {`${weekDayMap[dayNumber]}  ${opensMap[dayNumber].join(', ')}`}
         let opens = [];
         for (let dayNumber in opensMap) {
             let redColor = {}
-            if (parseInt(dayNumber) === moment().weekday()) {
+            const isToday = parseInt(dayNumber) === moment().weekday();
+            let todayOpen = '';
+            if (isToday) {
                 redColor['color'] = 'red';
+                todayOpen = '今日營業時間';
             }
             opens.push(
-                <div key={dayNumber} style={{ display: 'inline-block', marginTop: '10px' }}>
-                    <span style={{ display: 'inline-block', width: '80px', ...redColor }}>{weekDayMap[dayNumber]}</span>
-                    <span style={{ ...redColor }}>{opensMap[dayNumber].join(', ')}</span>
+                <div key={dayNumber} style={{ display: 'inline-block', marginTop: '10px', ...redColor }}>
+                    <span style={{ display: 'inline-block', width: '120px' }}>{todayOpen}</span>
+                    <span style={{ display: 'inline-block', width: '60px' }}>{weekDayMap[dayNumber]}</span>
+                    <span style={{ display: 'inline-block'}}>{opensMap[dayNumber].join(', ')}</span>
                 </div>
             );
         }
