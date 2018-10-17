@@ -9,7 +9,7 @@ const getStyles = (nameOfBlock) => {
     const styles = {
         container: {
             maxWidth: '960px',
-            border: '2px solid red',
+            // border: '2px solid red',
             margin: '0 auto'
         },
         searchBar: {

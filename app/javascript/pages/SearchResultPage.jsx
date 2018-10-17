@@ -11,7 +11,7 @@ const getStyles = (nameOfBlock) => {
         container: {
             // marginBottom: '40px',
             maxWidth: '960px',
-            border: '2px solid red',
+            // border: '2px solid red',
             margin: '0 auto',
             textAlign: 'center'
         },
@@ -21,12 +21,13 @@ const getStyles = (nameOfBlock) => {
             bottom: 50
         },
         searchResultTitle: {
-            border: '2px solid red',
+            // border: '2px solid red',
             display: 'inline-block',
 
             fontSize: '24px',
             fontWeight: 400,
-            margin: '0px 0px 0.35em',
+            // margin: '0px 0px 0.35em',
+            margin: '40px',
             lineHeight: 1.33,
             color: 'rgba(0, 0, 0, 0.87)'
         }

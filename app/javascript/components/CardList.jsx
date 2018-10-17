@@ -5,7 +5,7 @@ import Card from './Card.jsx';
 const getStyles = (nameOfBlock) => {
     const styles = {
         container: {
-            border: '2px solid yellow',
+            // border: '2px solid yellow',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center'
