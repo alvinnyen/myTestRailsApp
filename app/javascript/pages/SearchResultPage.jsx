@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 import queryString from 'query-string';
+import {withRouter} from "react-router-dom";
 
 import { getRestaurantListByTime } from '../dataParser.js';
 import CardList from '../components/CardList.jsx';
@@ -69,10 +70,18 @@ class SearchResultPage extends Component {
             location: {
                 pathname = '',
                 search =''
-            } = {}
+            } = {},
+            history: {
+                push = () => {}
+            }
         } = this.props;
 
         const queryObject = queryString.parse(search) || {};
+
+        if (!queryObject.datetimeMs || !queryObject.weekday || !queryObject.time) {
+            push('/');
+        }
+
         const datetimeMs = queryObject.datetimeMs;
 
         const searchResultTitle = (datetimeMs && `${moment(parseInt(datetimeMs)).format('dddd ,MM/DD YYYY, HH:mm')} search result`) ||
@@ -101,4 +110,4 @@ class SearchResultPage extends Component {
     }
 }
 
-export default SearchResultPage;
+export default withRouter(SearchResultPage);
