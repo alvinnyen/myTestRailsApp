@@ -41,7 +41,7 @@ const getStyles = (nameOfBlock, backgroundImage) => {
             justifyContent: 'space-between',
             marginBottom: '10px'
         },
-        priceDiv: {
+        priceSpan: {
             color: '#FFD700',
             fontWeight: 600
         },
@@ -50,7 +50,7 @@ const getStyles = (nameOfBlock, backgroundImage) => {
         },
         todayOpenParagraph: {
             ...this.paragraphFontStyle,
-            marginBottom: 0
+            margin: '0 auto'
         }
     };
 
@@ -93,21 +93,21 @@ const Card = ({
             <div style={getStyles('contentBox')}>
                 <h2 style={getStyles('titleFontStyle')}>{name}</h2>
                 <p style={getStyles('paragraphFontStyle')}>
-                    <div>{address}</div>
-                    <div style={getStyles('priceDiv')}>
+                    <span>{address}</span>
+                    <span style={getStyles('priceSpan')}>
                         <span>{price}</span>
                         <span style={getStyles('divideSign')}> / </span>
                         <span>$$$</span>
-                    </div>
+                    </span>
                 </p>
                 <p style={getStyles('paragraphFontStyle')}>
-                    <div>{tags}</div>
-                    <div>{ratingString}</div>
+                    <span>{tags}</span>
+                    <span>{ratingString}</span>
                 </p>
                 <p style={getStyles('todayOpenParagraph')}>
-                    <div>
+                    <span>
                         {todayOpen}
-                    </div>
+                    </span>
                 </p>
             </div>
         </div>

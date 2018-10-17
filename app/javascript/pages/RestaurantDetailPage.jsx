@@ -156,16 +156,16 @@ class RestaurantDetailPage extends Component {
                 <div style={getStyles('innerContainer')}>
                     <h2 style={getStyles('titleFontStyle')}>{name}</h2>
                     <p style={getStyles('paragraphFontStyle')}>
-                        <div>{address}</div>
-                        <div style={getStyles('priceDiv')}>
+                        <span>{address}</span>
+                        <span style={getStyles('priceDiv')}>
                             <span>{price}</span>
                             <span style={getStyles('divideSign')}> / </span>
                             <span>$$$</span>
-                        </div>
+                        </span>
                     </p>
                     <p style={getStyles('paragraphFontStyle')}>
-                        <div>{tags}</div>
-                        <div>{ratingString}</div>
+                        <span>{tags}</span>
+                        <span>{ratingString}</span>
                     </p>
                     <div style={getStyles('opensBlockContainer')}>
                         {opens}
