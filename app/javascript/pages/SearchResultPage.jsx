@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import CardList from '../components/CardList.jsx';
 import Button from '../components/Button.jsx';
 
-const getStyles = (nameOfBlock, backgroundImage) => {
+const getStyles = (nameOfBlock) => {
     const styles = {
         container: {
             // marginBottom: '40px',

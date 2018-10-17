@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Card from './Card.jsx';
 
 
-const getStyles = (nameOfBlock, backgroundImage) => {
+const getStyles = (nameOfBlock) => {
     const styles = {
         container: {
             border: '2px solid yellow',

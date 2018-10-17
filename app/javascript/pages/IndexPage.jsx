@@ -8,13 +8,17 @@ import CardList from '../components/CardList.jsx';
 import TimeSearchForm from '../components/TimeSearchForm.jsx';
 import DateTimeSearchForm from '../components/DateTimeSearchForm.jsx';
 
-const getStyles = (nameOfBlock, backgroundImage) => {
+const getStyles = (nameOfBlock) => {
     const styles = {
         container: {
             maxWidth: '960px',
             border: '2px solid red',
             margin: '0 auto'
         },
+        searchBar: {
+            display: 'flex',
+            justifyContent: 'center',
+        }
         // imgBanner: {
         //     backgroundImage,
         //     backgroundSize: 'cover',
@@ -62,8 +66,9 @@ class IndexPage extends Component {
 
         return (
             <div style={ getStyles('container') }>
-                <TimeSearchForm />
-                <DateTimeSearchForm/>
+                <div style={ getStyles('searchBar') }>
+                    <DateTimeSearchForm/>
+                </div>
                 <CardList
                     restaurantList={restaurantList}
                 />
