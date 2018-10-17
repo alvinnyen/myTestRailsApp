@@ -6,9 +6,10 @@ const getStyles = (nameOfBlock, backgroundImage) => {
     const styles = {
         container: {
             // marginBottom: '40px',
-            border: '2px solid blue',
+            // border: '2px solid blue',
             display: 'inline-block',
-            borderRadius: '4px',
+            boxShadow: '1px 1px 3px 1px rgba(0, 0, 0, 0.2), 1px 1px 1px 0px rgba(0, 0, 0, 0.14), 1px 2px 1px -1px rgba(0, 0, 0, 0.12)',
+            borderRadius: '10px'
         },
         backgroundImg: {
             backgroundImage,
@@ -21,10 +22,11 @@ const getStyles = (nameOfBlock, backgroundImage) => {
             fontSize: '40px',
             fontWeight: 800,
             textAlign: 'center',
-            lineHeight: '140px'
+            lineHeight: '140px',
+            borderRadius: '10px 10px 0 0'
         },
         contentBox: {
-            border: '2px solid red',
+            // border: '2px solid red',
             padding: '16px',
             color: 'rgba(0, 0, 0, 0.87)'
         },

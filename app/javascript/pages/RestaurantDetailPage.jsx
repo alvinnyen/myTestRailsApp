@@ -35,12 +35,12 @@ const getStyles = (nameOfBlock, backgroundImage) => {
         },
 
         container: {
-            boxShadow: '1px 1px 3px 0px rgba(0, 0, 0, 0.2), 1px 1px 1px 0px rgba(0, 0, 0, 0.14), 1px 2px 1px -1px rgba(0, 0, 0, 0.12)',
+            boxShadow: '1px 1px 3px 1px rgba(0, 0, 0, 0.2), 1px 1px 1px 0px rgba(0, 0, 0, 0.14), 1px 2px 1px -1px rgba(0, 0, 0, 0.12)',
             maxWidth: '960px',
-            padding: '50px',
+            padding: '30px',
             // border: '2px solid red',
             margin: '0 auto',
-            borderRadius: '4px',
+            borderRadius: '10px',
             marginTop: '20px'
         },
         imgBanner: {
