@@ -1,13 +1,10 @@
 import React from 'react';
-import moment from 'moment';
 import Tag from './Tag.jsx';
 import { weekDayMap } from '../langMap.js';
 
 const getStyles = (nameOfBlock, backgroundImage) => {
     const styles = {
         container: {
-            // marginBottom: '40px',
-            // border: '2px solid blue',
             display: 'inline-block',
             boxShadow: '1px 1px 3px 1px rgba(0, 0, 0, 0.2), 1px 1px 1px 0px rgba(0, 0, 0, 0.14), 1px 2px 1px -1px rgba(0, 0, 0, 0.12)',
             borderRadius: '10px'
@@ -27,7 +24,6 @@ const getStyles = (nameOfBlock, backgroundImage) => {
             borderRadius: '10px 10px 0 0'
         },
         contentBox: {
-            // border: '2px solid red',
             padding: '16px',
             color: 'rgba(0, 0, 0, 0.87)'
         },
@@ -47,6 +43,13 @@ const getStyles = (nameOfBlock, backgroundImage) => {
         },
         priceDiv: {
             color: '#FFD700'
+        },
+        divideSign: {
+            color: 'rgba(0, 0, 0, 0.87)'
+        },
+        todayOpenParagraph: {
+            ...this.paragraphFontStyle,
+            marginBottom: 0
         }
     };
 
@@ -56,7 +59,7 @@ const getStyles = (nameOfBlock, backgroundImage) => {
 const Card = ({
     address, 
     backgroundImgUrl, 
-    id, 
+    // id, 
     isOpen,
     name, 
     opens = [],
@@ -72,30 +75,35 @@ const Card = ({
     let backgroundImage = `url(${backgroundImgUrl})`;
     if (!isSearchResultPage && !isOpen) {
         backgroundImage = 'radial-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)), ' + backgroundImage;
-        // backgroundImage = 'linear-gradient(to left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8)), ' + backgroundImage;
     }
 
     const todayOpen = !opens.length ? '' : 
                         `${weekDayMap[searchWeekday] || 'today'} open: ` + opens.map(open => `${open.start} ~ ${open.end}`).join(', ');
 
+    const isClosed = (!isSearchResultPage && !isOpen) ? 'Closed' : '';
+
+    const tags = categories.map((title, index) => (<Tag key={index} text={title} />));
+
+    const ratingString = `rating: ${rating} / 5`;
+
     return (
         <div style={getStyles('container')}>
-            <div style={getStyles('backgroundImg', backgroundImage)}>{(!isSearchResultPage && !isOpen) ? 'Closed' : ''}</div>
+            <div style={getStyles('backgroundImg', backgroundImage)}>{isClosed}</div>
             <div style={getStyles('contentBox')}>
                 <h2 style={getStyles('titleFontStyle')}>{name}</h2>
                 <p style={getStyles('paragraphFontStyle')}>
                     <div>{address}</div>
                     <div style={getStyles('priceDiv')}>
                         <span>{price}</span>
-                        <span style={{ color: 'rgba(0, 0, 0, 0.87)' }}> / </span>
+                        <span style={getStyles('divideSign')}> / </span>
                         <span>$$$</span>
                     </div>
                 </p>
                 <p style={getStyles('paragraphFontStyle')}>
-                    <div>{categories.map((title, index) => (<Tag key={index} text={title} />))}</div>
-                    <div>{`rating: ${rating} / 5`}</div>
+                    <div>{tags}</div>
+                    <div>{ratingString}</div>
                 </p>
-                <p style={{ ...getStyles('paragraphFontStyle'), marginBottom: 0 }}>
+                <p style={getStyles('todayOpenParagraph')}>
                     <div>
                         {todayOpen}
                     </div>
