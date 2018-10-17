@@ -42,7 +42,8 @@ const getStyles = (nameOfBlock, backgroundImage) => {
             marginBottom: '10px'
         },
         priceDiv: {
-            color: '#FFD700'
+            color: '#FFD700',
+            fontWeight: 600
         },
         divideSign: {
             color: 'rgba(0, 0, 0, 0.87)'

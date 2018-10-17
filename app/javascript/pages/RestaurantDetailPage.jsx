@@ -27,7 +27,8 @@ const getStyles = (nameOfBlock, backgroundImage) => {
             marginBottom: '10px'
         },
         priceDiv: {
-            color: '#FFD700'
+            color: '#FFD700',
+            fontWeight: 600
         },
         innerContainer: {
             boxShadow: '1px 1px 3px 1px rgba(0, 0, 0, 0.2), 1px 1px 1px 0px rgba(0, 0, 0, 0.14), 1px 2px 1px -1px rgba(0, 0, 0, 0.12)',
