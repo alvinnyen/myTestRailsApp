@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-
 import { Link } from 'react-router-dom';
 import Card from './Card.jsx';
-
 
 const getStyles = (nameOfBlock) => {
     const styles = {
@@ -26,17 +24,17 @@ class CardList extends Component {
             restaurantList = [],
             isSearchResultPage = false,
             backTo = '',
-            searchWeekday
+            searchWeekday = ''
         } = this.props;
 
         return (
             <div style={ getStyles('container') }>
                 {
                     restaurantList.map((
-                        {address, backgroundImgUrl, id, isOpen, name, opens, 
-                            price,
-                            rating,
-                            categories }
+                        {address = '', backgroundImgUrl = '', id = -1, isOpen = false, name = '', opens = [],
+                            price = '',
+                            rating = 0,
+                            categories = [] } = {}
                     ) => {
     
                         return (
@@ -48,7 +46,7 @@ class CardList extends Component {
                                     }
                                 }}
                                 key={id}
-                                style={ getStyles('cardContainer') }
+                                style={getStyles('cardContainer')}
                             >
                                 <Card 
                                     id={id}

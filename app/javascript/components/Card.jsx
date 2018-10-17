@@ -57,20 +57,20 @@ const getStyles = (nameOfBlock, backgroundImage) => {
 }
 
 const Card = ({
-    address, 
-    backgroundImgUrl, 
-    // id, 
-    isOpen,
-    name, 
+    address = '',
+    backgroundImgUrl = '', 
+    // id = -1,
+    isOpen = false,
+    name = '',
     opens = [],
 
     isSearchResultPage = false,
 
-    price,
-    rating,
+    price = '',
+    rating = 0,
     categories = [],
 
-    searchWeekday
+    searchWeekday = ''
 }) => {
     let backgroundImage = `url(${backgroundImgUrl})`;
     if (!isSearchResultPage && !isOpen) {
@@ -78,7 +78,7 @@ const Card = ({
     }
 
     const todayOpen = !opens.length ? '' : 
-                        `${weekDayMap[searchWeekday] || 'today'} open: ` + opens.map(open => `${open.start} ~ ${open.end}`).join(', ');
+                        `${weekDayMap[searchWeekday] || 'today'} open: ` + opens.map((open = {}) => `${open.start} ~ ${open.end}`).join(', ');
 
     const isClosed = (!isSearchResultPage && !isOpen) ? 'Closed' : '';
 
