@@ -13,7 +13,10 @@ const getStyles = (nameOfBlock) => {
             maxWidth: '960px',
             // border: '2px solid red',
             margin: '0 auto',
-            textAlign: 'center'
+            
+            display: 'flex',
+            alignItems: 'center',
+            flexDirection: 'column'
         },
         buttonContainer: {
             position: 'fixed',
