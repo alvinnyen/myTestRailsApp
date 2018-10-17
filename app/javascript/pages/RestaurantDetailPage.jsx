@@ -4,7 +4,7 @@ import moment from 'moment';
 import { getTheRestaurantDetail } from '../dataParser.js';
 import Tag from '../components/Tag.jsx';
 import Button from '../components/Button.jsx';
-import { weekDayMap } from '../langMap.js';
+import { weekDayMap } from '../configs/langMap.js';
 
 const getStyles = (nameOfBlock, backgroundImage) => {
     const styles = {

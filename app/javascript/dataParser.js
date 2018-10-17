@@ -1,7 +1,7 @@
 const rawData = require('./data.json');
 const moment = require('moment');
-const cityMap = require('./langMap.js').cityMap;
-const distMap = require('./langMap.js').distMap;
+const cityMap = require('./configs/langMap.js').cityMap;
+const distMap = require('./configs/langMap.js').distMap;
 
 module.exports.getRestaurantList = function (weekday) {
     const data = [...rawData];

@@ -1,6 +1,6 @@
 import React from 'react';
 import Tag from './Tag.jsx';
-import { weekDayMap } from '../langMap.js';
+import { weekDayMap } from '../configs/langMap.js';
 
 const getStyles = (nameOfBlock, backgroundImage) => {
     const styles = {
