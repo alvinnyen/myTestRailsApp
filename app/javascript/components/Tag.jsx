@@ -13,7 +13,7 @@ const getStyles = (nameOfBlock) => {
     return styles[nameOfBlock];
 };
 
-const Tag = ({text}) => {
+const Tag = ({text = ''} = {}) => {
     return (
         <span style={getStyles('container')}>{text}</span>
     );
