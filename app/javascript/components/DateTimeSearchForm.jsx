@@ -69,6 +69,7 @@ class DateTimeSearchForm extends Component {
                     value={selectedDate}
                     onChange={this.handleDateChange}
                     style={getStyles('dateTimePicker')}
+                    disableFuture={false}
                 />
                 <Link 
                     to={`/search?time=${timeString}&weekday=${weekday}&datetimeMs=${datetimeMs}`}
