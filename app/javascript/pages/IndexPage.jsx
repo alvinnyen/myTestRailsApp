@@ -4,8 +4,6 @@ import moment from 'moment';
 // import { Link } from 'react-router-dom';
 // import Card from '../components/Card.jsx';
 import CardList from '../components/CardList.jsx';
-
-import TimeSearchForm from '../components/TimeSearchForm.jsx';
 import DateTimeSearchForm from '../components/DateTimeSearchForm.jsx';
 
 const getStyles = (nameOfBlock) => {
