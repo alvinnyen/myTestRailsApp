@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import moment from 'moment';
+import {withRouter} from "react-router-dom";
 
 import { getTheRestaurantDetail } from '../dataParser.js';
 import Tag from '../components/Tag.jsx';
@@ -77,8 +78,22 @@ class RestaurantDetailPage extends Component {
                 params: {
                     restaurantId = '0'
                 } = {}
-            } = {}
+            } = {},
+            history: {
+                push = () => {}
+            }
         } = this.props;
+
+        let numberRestaurantId;
+        if (typeof window !== 'undefined') { // isClientSide
+            numberRestaurantId =  window.parseInt(restaurantId);
+        }
+
+        // make sure numberRestaurantId !isNaN && in 0 ~ 49 
+        if (isNaN(numberRestaurantId) || numberRestaurantId < 0 || numberRestaurantId > 49) {
+            push('/');
+            return;
+        }
 
         const restaurantDetail = getTheRestaurantDetail(restaurantId, moment().weekday());
         // {
@@ -180,4 +195,4 @@ class RestaurantDetailPage extends Component {
     }
 }
 
-export default RestaurantDetailPage;
+export default withRouter(RestaurantDetailPage);

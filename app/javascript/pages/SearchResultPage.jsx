@@ -80,6 +80,7 @@ class SearchResultPage extends Component {
 
         if (!queryObject.datetimeMs || !queryObject.weekday || !queryObject.time) {
             push('/');
+            return;
         }
 
         const datetimeMs = queryObject.datetimeMs;
