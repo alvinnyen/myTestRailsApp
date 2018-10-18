@@ -17,7 +17,7 @@ Be sure to first install Bundler and Yarn.
 
 ## 3. start the server
 - `rails s`
-- it's running on http://0.0.0.0:3000
+- it's running on `http://localhost:3000/` ( `http://0.0.0.0:3000` )
 
 
 ## 4. pages, routes, and features
