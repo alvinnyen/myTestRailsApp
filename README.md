@@ -33,9 +33,10 @@ Be sure to first install Bundler and Yarn.
 
 ### 4.2. Search Result Pag
 - the path of Homepage is `/search? time=$HHmm & weekday=$weekdayNumber & datetimeMs = $ms`
-    - if any query parameter not provides in the url, it will redirect to Home Page.
+    - if any query parameter not provides in the url, it will redirect to Home Page
 - it have a list of restaurants which meets the search criteria, each of the item contains necessary and enough information for users to decide if they want to explore more
 
 ### 4.3. Restaurant Detail Page
 - the path of Homepage is `/restaurant/:restaurantId`
+    - if isNaN(parseInt(restaurantId)) or parseInt(restaurantId) out of 0 ~ 49, it will redirect to Home Page
 - it contains all the necessary information for the specific restaurant
